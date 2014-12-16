@@ -1,0 +1,25 @@
+import Tkinter
+import tkFont
+import tkMessageBox
+import ttk
+
+def to_interest():
+    interest = Tkinter.Tk()
+    interest.minsize(width=500, height=500)
+    interest.maxsize(width=500, height=500)
+    home.destroy()
+
+def close_window():
+    home.destroy()
+
+home = Tkinter.Tk()
+home.minsize(width=300, height=500)
+home.maxsize(width=300, height=500)
+
+interest_button = Tkinter.Button(home, text='INTEREST', command=to_interest, width=300)
+close_button = Tkinter.Button(home, text='EXIT', command=close_window)
+
+interest_button.pack()
+close_button.pack()
+
+home.mainloop()
