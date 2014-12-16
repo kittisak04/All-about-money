@@ -3,35 +3,45 @@ import tkMessageBox
 import ttk
 import Tkinter
 
-def to_interest():
-    interest = Tkinter.Tk()
-    interest.minsize(width=500, height=500)
-    interest.maxsize(width=500, height=500)
-    home.destroy()
 home = Tkinter.Tk()
-home.geometry('800x500')
+home.geometry('800x600')
 home.resizable(width=False, height=False)
 home.title('All About Money V.Beta')
 
 #calculator ______ edit by tong
 def calcul():
-    var_1.set("Total loan = $%0.2f" % pmoneyentry)
-    var_2.set("Interest   = %0.2f%s" % (interestentry, "%"))
-    var_3.set("Years      = %0.f" % yearentry)
-    var_4.set("%.2f" % (tempcalc * 1.8)+" Rankine.")
-
+    money = float(moneyentry.get())
+    interest = float(interestentry.get())
+    year = int(yearentry.get())
+    monthly_interest = interest/(100 * 12)
+    payment_number = year * 12
+    monthly_payment = money * (monthly_interest / (1 - (1 + monthly_interest) ** ( -1 * payment_number)))
+    payments = 100
+    rem_principal = money * (1 - ((1 + monthly_interest) ** payments - 1) / ((1 + monthly_interest) ** payment_number - 1))
+    
+    var_1.set("Total loan = %0.2f" % money)
+    var_2.set("Interest   = %0.2f%s" % (interest, "%"))
+    var_3.set("Years      = %0.f" % year)
+    var_4.set("Number of payments = %0.f" % payment_number)
+    var_5.set("Payment amount     = %0.2f" % monthly_payment)
+    var_6.set("-"*60)
+    var_7.set("Total cost     = %0.2f" % (payment_number * monthly_payment))
+    var_8.set("Total interest = %0.2f" % (payment_number * monthly_payment - money))
+    var_9.set("-"*60)
+    var_10.set("The outstanding principal after %d payments is %0.2f" % (payments, rem_principal))
+    var_11.set("At this point you have paid a total of %0.2f" % (monthly_payment * payments))
     
 ##Label
 hLabel = Tkinter.Label(text='ALL ABOUT MONEY', font=tkFont.Font(size=15, weight=tkFont.BOLD)).pack()
-hLabel2 = Tkinter.Label(text='Faculty of Information Technology @ KMITL' ).place(x=550,y=470)
-hLabe3 = Tkinter.Label(text='This program is demo version').place(x=630,y=450)
+hLabel2 = Tkinter.Label(text='Faculty of Information Technology @ KMITL' ).place(x=0,y=570)
+hLabe3 = Tkinter.Label(text='This program is demo version').place(x=0,y=550)
 interestLabel = Tkinter.Label(text='%', font=tkFont.Font(size=15)).place(x=500,y=110)
 
 ## input text
 mlabel = Tkinter.Label(text='Money', font=tkFont.Font(size=15)).place(x=240,y=70)
 ilabel = Tkinter.Label(text='Interest', font=tkFont.Font(size=15)).place(x=230,y=110)
-interestentry = Tkinter.Entry(home, width=30)
 moneyentry = Tkinter.Entry(home, width=30)
+interestentry = Tkinter.Entry(home, width=30)
 yearentry = Tkinter.Entry(home, width=30)
 moneyentry.place(x=310,y=80)
 interestentry.place(x=310,y=115)
@@ -42,14 +52,35 @@ var_1 = Tkinter.StringVar()
 var_2 = Tkinter.StringVar()
 var_3 = Tkinter.StringVar()
 var_4 = Tkinter.StringVar()
-label_1 = Tkinter.Label(home, textvariable=var_1, fg='black',bg="#FFFFFF",font = tkFont.Font(size = 12))
-label_2 = Tkinter.Label(home, textvariable=var_2, fg='black',bg="#FFFFFF",font = tkFont.Font(size = 12))
-label_3 = Tkinter.Label(home, textvariable=var_3, fg='black',bg="#FFFFFF",font = tkFont.Font(size = 12))
-label_4 = Tkinter.Label(home, textvariable=var_4, fg='black',bg="#FFFFFF",font = tkFont.Font(size = 12))
-label_1.pack()
-label_2.pack()
-label_3.pack()
-label_4.pack()
+var_5 = Tkinter.StringVar()
+var_6 = Tkinter.StringVar()
+var_7 = Tkinter.StringVar()
+var_8 = Tkinter.StringVar()
+var_9 = Tkinter.StringVar()
+var_10 = Tkinter.StringVar()
+var_11 = Tkinter.StringVar()
+label_1 = Tkinter.Label(home, textvariable=var_1, fg='black',font = tkFont.Font(size = 10))
+label_2 = Tkinter.Label(home, textvariable=var_2, fg='black',font = tkFont.Font(size = 10))
+label_3 = Tkinter.Label(home, textvariable=var_3, fg='black',font = tkFont.Font(size = 10))
+label_4 = Tkinter.Label(home, textvariable=var_4, fg='black',font = tkFont.Font(size = 10))
+label_5 = Tkinter.Label(home, textvariable=var_5, fg='black',font = tkFont.Font(size = 10))
+label_6 = Tkinter.Label(home, textvariable=var_6, fg='black',font = tkFont.Font(size = 10))
+label_7 = Tkinter.Label(home, textvariable=var_7, fg='black',font = tkFont.Font(size = 10))
+label_8 = Tkinter.Label(home, textvariable=var_8, fg='black',font = tkFont.Font(size = 10))
+label_9 = Tkinter.Label(home, textvariable=var_9, fg='black',font = tkFont.Font(size = 10))
+label_10 = Tkinter.Label(home, textvariable=var_10, fg='black',font = tkFont.Font(size = 10))
+label_11 = Tkinter.Label(home, textvariable=var_11, fg='black',font = tkFont.Font(size = 10))
+label_1.place(x=310,y=250)
+label_2.place(x=310,y=280)
+label_3.place(x=310,y=310)
+label_4.place(x=310,y=340)
+label_5.place(x=310,y=370)
+label_6.place(x=310,y=400)
+label_7.place(x=310,y=430)
+label_8.place(x=310,y=460)
+label_9.place(x=310,y=490)
+label_10.place(x=310,y=520)
+label_11.place(x=310,y=550)
 
 ## list
 moneylist = Tkinter.StringVar()
@@ -60,22 +91,10 @@ moneybox.place(x=500,y=80)
 
 yearlist = Tkinter.StringVar()
 yearbox = ttk.Combobox(home, textvariable=yearlist,state='readonly')
-yearbox['values'] = ('Day','Month')
+yearbox['values'] = ('Year')
 yearbox.current(0)
 yearbox.place(x=500,y=150)
 
-def close_window():
-    home.destroy()
-
-home = Tkinter.Tk()
-home.minsize(width=300, height=500)
-home.maxsize(width=300, height=500)
-
-interest_button = Tkinter.Button(home, text='INTEREST', command=to_interest, width=300)
-close_button = Tkinter.Button(home, text='EXIT', command=close_window)
-
-interest_button.pack()
-close_button.pack()
 ##menubar func
 def about():
     tkMessageBox.showinfo(message='Made By\nKittisak Kaewnan 57070008 \nKhemathat')
@@ -99,9 +118,10 @@ exitmenu = Tkinter.Menu(menubar, tearoff=0)
 exitmenu.add_command(labe='Exit',command=xit)
 menubar.add_cascade(label='Exit',menu=exitmenu)
 
+#convert button
+convert = Tkinter.Button(text="Calculate",command=calcul,fg='black',bg='light blue',font=tkFont.Font(size = 12))
+convert.place(x=360,y=200)
+
 home.config(menu=menubar)
 
 home.mainloop()
-
-
-
