@@ -5,7 +5,7 @@ import Tkinter
 
 home = Tkinter.Tk()
 home.geometry('800x600')
-home.resizable(width=False, height=False)
+home.resizable(width=True, height=True)
 home.title('All About Money V.1.01')
 home.configure(bg='black')
 
@@ -21,12 +21,11 @@ def calcul():
     rem_principal = money * (1 - ((1 + monthly_interest) ** payments - 1) / ((1 + monthly_interest) ** payment_number - 1))
     if interest >100:
         tkMessageBox.showinfo(message='0% - 100%')
-
-    
+  
     var_1.set("Total loan = %0.2f" % money)
     var_2.set("Interest   = %0.2f%s" % (interest, "%"))
     var_3.set("Years      = %0.f year" % year)
-    var_4.set("Number of payments = %0.f  mouth" % payment_number)
+    var_4.set("Number of payments = %0.f  month" % payment_number)
     var_5.set("Payment amount     = %0.2f" % monthly_payment)
     #var_6.set("-"*60)
     var_7.set("Total cost     = %0.2f" % (payment_number * monthly_payment))
@@ -39,7 +38,7 @@ def calcul():
 hLabel = Tkinter.Label(text='ALL ABOUT MONEY', bg= 'black', fg='green',font=tkFont.Font(size=15, weight=tkFont.BOLD)).pack()
 hLabel2 = Tkinter.Label(text='Faculty of Information Technology @ KMITL', bg= 'black', fg='blue' ).place(x=0,y=570)
 #hLabe3 = Tkinter.Label(text='This program is demo version').place(x=0,y=550)
-interestLabel = Tkinter.Label(text='%', font=tkFont.Font(size=15)).place(x=500,y=110)
+interestLabel = Tkinter.Label(text='%', bg= 'black', fg='white', font=tkFont.Font(size=15)).place(x=500,y=110)
 
 ## input text
 mlabel = Tkinter.Label(text='Money', bg= 'black', fg='white',font=tkFont.Font(size=15)).place(x=230,y=70)
