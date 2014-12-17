@@ -9,7 +9,7 @@ home.resizable(width=True, height=True)
 home.title('All About Money V.1.01')
 home.configure(bg='black')
 
-#calculator ______ edit by tong
+#calculator ______ edit by tong * *
 def calcul():
     money = float(moneyentry.get())
     interest = float(interestentry.get())
