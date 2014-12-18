@@ -18,7 +18,7 @@ def calcul():
     payment_number = year * 12
     monthly_payment = money * (monthly_interest / (1 - (1 + monthly_interest) ** ( -1 * payment_number)))
     payments = 100
-    rem_principal = money * (1 - ((1 + monthly_interest) ** payments - 1) / ((1 + monthly_interest) ** payment_number - 1))
+    rem_principal = money * (1 - ((1 + monthly_interest) ** (payment_number/12) - 1) / ((1 + monthly_interest) ** payment_number - 1))
     if interest >100:
         tkMessageBox.showinfo(message='0% - 100%')
   
@@ -31,8 +31,8 @@ def calcul():
     var_7.set("Total cost     = %0.2f" % (payment_number * monthly_payment))
     var_8.set("Total interest = %0.2f" % (payment_number * monthly_payment - money))
     #var_9.set("-"*60)
-    var_10.set("The outstanding principal after %d payments is %0.2f " % (payments, rem_principal))
-    var_11.set("At this point you have paid a total of %0.2f" % (monthly_payment * payments))
+    var_10.set("The outstanding principal after %d payments is %0.2f " % (payment_number, rem_principal))
+    var_11.set("At this point you have paid a total of %0.2f" % (monthly_payment * payment_number))
     
 ##Label
 hLabel = Tkinter.Label(text='ALL ABOUT MONEY', bg= 'black', fg='green',font=tkFont.Font(size=15, weight=tkFont.BOLD)).pack()
